@@ -1,0 +1,39 @@
+{
+  "name": "elmsserver",
+  "version": "1.0.0",
+  "description": "Employee Leave System Server Project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ELMS_SERVER"
+  ],
+  "author": "MaheshVenu PV",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.1.1",
+    "crypto-random-string": "^4.0.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "faker": "^5.5.3",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.21.21",
+    "knex-db-manager": "^0.7.0",
+    "moment": "^2.29.1",
+    "multer": "^1.4.3",
+    "mysql": "^2.18.1",
+    "mysqldump": "^3.2.0",
+    "node-cron": "^3.0.0",
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.15",
+    "objection": "^2.2.18",
+    "path": "^0.12.7",
+    "randomstring": "^1.2.1",
+    "underscore": "^1.13.1"
+  }
+}
