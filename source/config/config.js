@@ -12,5 +12,9 @@ module.exports = {
         username: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
         securitykey: process.env.SECURITY_KEY
+    },
+    email: {
+        name: process.env.MAIL_NAME,
+        password: process.env.MAIL_PASSWORD
     }
 }

@@ -19,9 +19,8 @@ class Employees extends Model {
                 middleName: { type: ['string', null] },
                 lastName: { type: ['string', null] },
                 userName: { type: ['string', null] },
-                emailId: { type: ['string', null] },
-                password: { type: ['string', null] },
-                address: { type: ['string', null] },
+                email: { type: ['string', 'text', null] },
+                address: { type: ['string', 'text', null] },
                 cityName: { type: ['string', null] },
                 stateName: { type: ['string', null] },
                 countryName: { type: ['string', null] },
@@ -30,13 +29,12 @@ class Employees extends Model {
                 dateOfBirth: { type: ['string', null] },
                 designation: { type: ['string', null] },
                 department: { type: ['string', null] },
-                registrationDate: { type: ['string', null] },
+                dateOfJoining: { type: ['string', null] },
                 profileImage: { type: ['string', 'text', null] },
                 bloodGroup: { type: ['string', null] },
-                maritalStatus: { type: ['string', null] },
-                role: { type: ['string', null] },                   // employee, admin
-                status: { type: ['integer', 'number', null] },      // 0-Inactive, 1-Active, 2-Blocked
-                lastLoginDateTime: { type: ['string', null] },
+                maritalStatus: { type: ['string', null] },          // single, married.
+                role: { type: ['string', null] },                   // employee. Default: employee
+                status: { type: ['integer', 'number', null] },      // 0-Inactive, 1-Active, 2-Blocked. Default: 1-Active
                 created_at: { type: 'datetime' },
                 updated_at: { type: 'timestamp' }
             }

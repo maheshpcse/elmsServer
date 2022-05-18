@@ -1,5 +1,8 @@
 'use strict';
 
+// require('../public/practise.js');
+// require('../public/task.js');
+// require('../public/work.js');
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
@@ -58,6 +61,11 @@ app.get('/connect', async (request, response) => {
             });
         }
     });
+});
+
+app.get('/dataset', async (req, res) => {
+    const resultData = newData.data;
+    return res.status(200).json(resultData);
 });
 
 // Routes
