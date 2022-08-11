@@ -15,6 +15,7 @@ const fs = require('fs');
 const config = require('../config/config');
 const Employees = require('../models/Employees.model');
 const Users = require('../models/Users.model');
+const Departments = require('../models/Departments.model');
 
 const addUpdateSingleEmployee = async (request, response, next) => {
     console.log('request body isss', request.body);
@@ -191,13 +192,13 @@ const getEmployeesData = async (request, response, next) => {
 
         page = (Number(page) - 1) * Number(limit);
 
-        let whereRawQuery = '1=1'
+        let whereRawQuery = '1=1';
 
         if (query) {
             whereRawQuery = `e.employeeId LIKE '%${query}%' OR e.firstName LIKE '%${query}%' OR e.middleName LIKE '%${query}%' OR e.lastName LIKE '%${query}%' OR e.designation LIKE '%${query}%' OR e.department LIKE '%${query}%' OR e.dateOfBirth LIKE '%${query}%'`
         }
 
-        let whereStatus = '1=1'
+        let whereStatus = '1=1';
 
         if (status !== 'all') {
             whereStatus = `e.status = ${status}`;
@@ -246,11 +247,50 @@ const getEmployeesData = async (request, response, next) => {
             success: true,
             error: false,
             statusCode: 200,
-            message: 'Ger employees list successful',
+            message: 'Get employees list successful',
             data: {
                 list: employeesList,
                 count: employeesCount
             }
+        }
+    } catch (error) {
+        console.log('Error at try catch API result', error);
+        result = {
+            success: false,
+            error: true,
+            statusCode: 500,
+            message: message || 'Error at try catch API result',
+            data: []
+        }
+    }
+    return response.status(200).json(result);
+}
+
+const getDepartmentsData = async (request, response, next) => {
+    console.log('request body isss', request.body);
+    let result = {};
+    let departmentsList = [];
+    let message = '';
+    try {
+        // SELECT LIST query
+        await Departments.query(request.knex)
+            .select('d.*')
+            .alias('d')
+            .whereRaw(`d.status = 1`)
+            .then(async list => {
+                console.log('Get departments list response', list);
+                departmentsList = list;
+            }).catch(getListErr => {
+                message = 'Error while getting departments list';
+                throw getListErr;
+            });
+
+        result = {
+            success: true,
+            error: false,
+            statusCode: 200,
+            message: 'Get departments list successful',
+            data: departmentsList
         }
     } catch (error) {
         console.log('Error at try catch API result', error);
@@ -298,7 +338,7 @@ const getEmployeeDataById = async (request, response, next) => {
             success: true,
             error: false,
             statusCode: 200,
-            message: 'Ger employee data by id successful',
+            message: 'Get employee data by id successful',
             data: employeeData
         }
     } catch (error) {
@@ -497,6 +537,7 @@ module.exports = {
     addUpdateSingleEmployee,
     bulkUploadEmployee,
     getEmployeesData,
+    getDepartmentsData,
     getEmployeeDataById,
     updateEmployeeStatus,
     generatePasswordToEmployee

@@ -1,23 +1,22 @@
 const { Model } = require('objection');
 
-class Leavetypes extends Model {
+class Leavebalance extends Model {
     static get tableName() {
-        return 'leavetypes';
+        return 'leavebalance';
     }
 
     static get idColumn() {
-        return 'lt_Id';
+        return 'lb_Id';
     }
 
     static get jsonSchema() {
         return {
             type: 'object',
             properties: {
-                lt_Id: { type: ['integer', null] },
-                leaveTypeName: { type: ['string', null] },
-                leaveShortName: { type: ['string', null] },
+                lb_Id: { type: ['integer', null] },
+                emp_id	: { type: ['string', null] },
                 leaveShortCode: { type: ['string', null] },
-                description: { type: ['string', 'text', null] },
+                leaveBalance: { type: ['integer', 'number', null] },
                 status: { type: ['integer', 'number', null] },      // 0-Inactive, 1-Active. Default: 1-Active
                 created_at: { type: 'datetime' },
                 updated_at: { type: 'timestamp' }
@@ -26,4 +25,4 @@ class Leavetypes extends Model {
     }
 }
 
-module.exports = Leavetypes;
+module.exports = Leavebalance;
